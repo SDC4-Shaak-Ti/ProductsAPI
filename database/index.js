@@ -15,7 +15,7 @@ const getOneProduct = (product_id) => {
   return pool
     .connect()
     .then(client => {
-      return client.query(`SELECT * FROM all_products WHERE id = ${product_id}`)
+      return client.query(`SELECT * FROM all_products WHERE id = ${product_id};`)
       .then(results => {
         client.release();
         return results.rows[0]
@@ -52,42 +52,41 @@ const getRelatedProducts = (product_id) => {
 
 // get all styles for one product
 
-// const getStyles = (product_id) => {
-//   return pool
-//     .connect()
-//     .then(client => {
-//       return client.query(`select json_build_object(
-//         'id', a.id,
-//         'name', a.name,
-//         'slogan', a.slogan,
-//         'description', a.description,
-//         'category', a.category,
-//         'default_price', a.default_price,
-//         'features', (
-//           select json_agg(json_build_object(
-//             'feature', f.feature,
-//             'value', f.value
-//           ))
-//           from features f where f.product_id = a.id
-//         )
-//       ) as result
-//       from all_products a
-//       where a.id = ${product_id};`)
-//       .then(results => {
-//         client.release();
-//         return results.rows[0];
-//       })
-//       .catch(err => {
-//         client.release();
-//         console.log(err);
-//       })
-//     });
-// }
-
+const getStyles = (product_id) => {
+  return pool
+    .connect()
+    .then(client => {
+      return client.query(`select json_build_object(
+        'id', ap.id,
+        'name', ap.name,
+        'slogan', ap.slogan,
+        'description', ap.description,
+        'category', ap.category,
+        'default_price', ap.default_price,
+        'features', (
+          select json_agg(json_build_object(
+            'feature', fe.feature,
+            'value', fe.value
+          ))
+          from features fe where fe.product_id = ap.id
+        )
+      ) as result
+      from all_products ap
+      where ap.id = ${product_id};`)
+      .then(results => {
+        client.release();
+        return results.rows[0];
+      })
+      .catch(err => {
+        client.release();
+        console.log(err);
+      })
+    });
+}
 // getStyles(1);
 
 module.exports = {
   getOneProduct:  getOneProduct,
-  getRelatedProducts:  getRelatedProducts
-  // getStyles:  getStyles
+  getRelatedProducts:  getRelatedProducts,
+  getStyles:  getStyles
 };

@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
-const {getOneProduct, getRelatedProducts, /*getStyles*/} = require('/Users/daniel/ProductsAPI/database/index.js');
+const {getOneProduct, getRelatedProducts, getStyles} = require('/Users/daniel/ProductsAPI/database/index.js');
 
 //middleware
 // app.use(express.static(path.join(__dirname, '../public')));
@@ -23,20 +23,19 @@ app.get('/products/*/related', (req, res) => {
 
 //get all features for a product
 
-// app.get('/products/*/styles', (req, res) => {
-//   console.log(req.params)
-//   getStyles(req.params['0'])
-//   .then((productStyles) => {
-//     res.send(productStyles);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// });
+app.get('/products/*/styles', (req, res) => {
+  getStyles(req.params['0'])
+  .then((productStyles) => {
+    res.send(productStyles);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
 
 //get all product info for one product
 
-app.get('/products/*/', (req, res) => {
+app.get('/products/*', (req, res) => {
   getOneProduct(req.params['0'])
     .then((product) => {
       res.send(product);
