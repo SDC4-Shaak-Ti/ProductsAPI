@@ -45,8 +45,8 @@ app.get('/products/*', (req, res) => {
     })
 });
 
-app.get('/loaderio-54cd4982ebb7a6bff8121a70a8ee7988', (req, res) => {
-  res.sendFile(path.join(__dirname, '../loaderio-54cd4982ebb7a6bff8121a70a8ee7988.txt'));
+app.get('/loaderio-c3938d2f5b82512ec3caa3bbd56388d1', (req, res) => {
+  res.sendFile(path.join(__dirname, '../loaderio-c3938d2f5b82512ec3caa3bbd56388d1.txt'));
 });
 
 app.listen(process.env.SERVER_PORT, () => {
