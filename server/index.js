@@ -18,7 +18,7 @@ app.get('/products/*/related', (req, res) => {
   })
   .catch((err) => {
     console.log(err);
-  });
+  })
 });
 
 //get all features for a product
@@ -44,6 +44,8 @@ app.get('/products/*', (req, res) => {
       console.log(err);
     })
 });
+
+app.get('/')
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`listening on port ${process.env.SERVER_PORT}`);

@@ -2,3 +2,5 @@
 node_modules
 etl
 package-lock.json
+sdc-database-instance-first-try.pem
+sdc-server-instance-first-try.pem
