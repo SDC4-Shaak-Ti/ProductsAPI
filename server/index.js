@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
-const {getOneProduct, getRelatedProducts, getStyles} = require('/Users/daniel/ProductsAPI/database/index.js');
+const {getOneProduct, getRelatedProducts, getStyles} = require('../database/index.js');
 
 //middleware
 // app.use(express.static(path.join(__dirname, '../public')));
