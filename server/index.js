@@ -45,7 +45,7 @@ app.get('/products/*', (req, res) => {
     })
 });
 
-// app.get('/')
+app.get('/loaderio-54cd4982ebb7a6bff8121a70a8ee7988', res.sendFile('../loaderio-54cd4982ebb7a6bff8121a70a8ee7988.txt'));
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`listening on port ${process.env.SERVER_PORT}`);
