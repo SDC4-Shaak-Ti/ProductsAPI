@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch server './server/'",
+    "build": "node server './server/'",
     "test": "k6 run script.js"
   },
   "repository": {
